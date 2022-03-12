@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	
+
+	public static void main(String[] args) {
+		
+		Cliente nomecli = new Cliente();
+		Conta cc = new ContaCorrente(nomecli);
+		Conta poupanca = new ContaPoupanca(nomecli);
+		
+		double escolha, valor;
+		//cc.Extrato();
+		//poupanca.Extrato();
+		Scanner sc = new Scanner(System.in);
+		String nome;
+		boolean x=true;
+		int deci;
+		
+		
+		System.out.println("Digite o nome do Cliente:");
+		nome = sc.next();
+		nomecli.setNome(nome);
+		
+		while (x==true) {
+		System.out.println("Digite a operação que deseja /n:");
+		System.out.println("1 - Depositar /n:");
+		System.out.println("2 - Sacar");
+		System.out.println("3 - Transferir");
+		System.out.println("4 - Extrato");
+		System.out.println("5 - Sair");
+		
+		escolha = sc.nextInt();
+		
+		
+		if (escolha==1) {
+			System.out.println("Digite o Valor do Deposito:");
+			valor = sc.nextInt();
+			//cc.depositar(valor);
+			cc.depositar(valor);
+			cc.Extrato();
+		}
+		
+		else if (escolha==2) {
+			System.out.println("Digite o Valor do Saque:");
+			valor = sc.nextInt();
+			cc.sacar(valor);
+			cc.Extrato();
+		}
+		else if(escolha==3) {
+			System.out.println("Digite o Valor da Transferência:");
+			valor = sc.nextInt();
+			cc.transferir(valor, poupanca);
+			cc.Extrato();
+			poupanca.Extrato();
+		}
+		
+		else if(escolha==4) {
+			cc.Extrato();
+			poupanca.Extrato();
+		}
+		else if (escolha==5){
+			x = false;
+		}
+		else {
+			System.out.println("Opção Inválida");
+		}
+		
+		System.out.println("Deseja fazer uma nova operação?");
+		System.out.println("1 - Sim");
+		System.out.println("2 - Não");
+		deci = sc.nextInt();
+		if(deci==1) {
+			
+		}
+		else {
+			x = false;
+		}
+		
+		}
+	}
+	
+}
